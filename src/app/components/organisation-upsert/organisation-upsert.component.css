@@ -1,0 +1,52 @@
+.organizations-info {
+  text-align: left;
+  padding: 20px 0;
+}
+
+.title-text {
+  font-size: 28px;
+  color: #000022;
+  margin-top: 1em;
+}
+
+.description-text {
+  font-size: 16px;
+  color: #66667A;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.grey-text {
+  color: #66667A;
+}
+
+.mat-radio-button {
+  margin-right: 15px;
+}
+
+.form-inputs {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.organization-input {
+  width: 40%;
+  padding: 10px;
+  margin: 0 20px 20px 0;
+  border: none;
+  -webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.02);
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.02);
+}
+
+.creation-button {
+  border-color: #61B500;
+  font-size: 14px;
+  width: 40%;
+  color: #61B500;
+  border-width: 2px;
+  border-style: solid;
+  display:block;
+}

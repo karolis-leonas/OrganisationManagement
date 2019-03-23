@@ -1,3 +1,36 @@
-<p>
-  organisation-upsert works!
-</p>
+<div class="organizations-info">
+    <div class="title-text ibm-plex-mono">
+      Create a new Organization
+    </div>
+    <div class="description-text ibm-plex-mono">
+      Start a new Organization to easily manage your virtual machines, bare metal servers and IP resources. There are two types of Organizations you can choose from: Business and Personal..
+    </div>
+  </div>
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="organisation.organizationType">
+      <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Business">Business</mat-radio-button>
+      <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Personal">Personal</mat-radio-button>
+  </mat-radio-group>
+  <form class="company-form">
+      <div class="form-inputs">
+          <input name="name" [(ngModel)]="organisation.name" class="organization-input ibm-plex-mono" type="text" placeholder="Organization name *">
+          <select name="country" class="organization-input ibm-plex-mono" [(ngModel)]="organisation.country">
+              <option [value]="null">Select Category</option>
+              <option [value]="organisationCountry.key" *ngFor="let organisationCountry of organisationCountries" value={{summary}}>
+                  {{organisationCountry.value}}
+              </option>
+          </select>
+          <input name="firstName" [(ngModel)]="organisation.firstName" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="First name *">
+          <input name="stateRegion" [(ngModel)]="organisation.stateRegion" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="State / region *">
+          <input name="lastName" [(ngModel)]="organisation.lastName" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Last name *">
+          <input name="city" [(ngModel)]="organisation.city" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="City *">
+          <input name="email" [(ngModel)]="organisation.email" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Business Email *">
+          <input name="address" [(ngModel)]="organisation.address" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Address *">
+          <input name="phone" [(ngModel)]="organisation.phone" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="number" placeholder="Business Phone *">
+          <input name="zipCode" [(ngModel)]="organisation.zipCode" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Zip code *">
+          <input [required]="organisation.organizationType == organisationType.Business" *ngIf="organisation.organizationType == organisationType.Business" name="industry" [(ngModel)]="organisation.industry" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Your industry *">
+          <input [required]="organisation.organizationType == organisationType.Business"*ngIf="organisation.organizationType == organisationType.Business" name="companyNumber" [(ngModel)]="organisation.companyNumber" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="text" placeholder="Company number *">
+          <input *ngIf="organisation.organizationType == organisationType.Business" name="vat" [(ngModel)]="organisation.VAT" class="organization-input ibm-plex-mono" class="organization-input ibm-plex-mono" type="number" placeholder="VAT">
+      </div>
+    </form>
+
+    <button mat-button name="submit" class="creation-button ibm-plex-mono">Create Organization</button>
