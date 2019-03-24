@@ -1,0 +1,47 @@
+<mat-card class="organization-box ibm-plex-mono mat-elevation-z2">
+    <div class="title-text"><b>{{organisation.name}}</b></div>
+    <div class="description-item">
+      <div class="item-title">Organization type</div>
+      <div class="item-value">{{organisationType[organisation.organizationType]}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">First name</div>
+      <div class="item-value">{{organisation.firstName}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">Last name</div>
+      <div class="item-value">{{organisation.lastName}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">Email</div>
+      <div class="item-value">{{organisation.email}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">Phone</div>
+      <div class="item-value">{{organisationCountryCode}} {{organisation.phone}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">Country</div>
+      <div class="item-value">{{organisationCountry}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">City</div>
+      <div class="item-value">{{organisation.city}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">Address</div>
+      <div class="item-value">{{organisation.address}}</div>
+    </div>
+    <div *ngIf="organisation.organizationType === organisationType.Business" class="description-item">
+      <div class="item-title">Company number</div>
+      <div class="item-value">{{organisationCountryCode}} {{organisation.companyNumber}}</div>
+    </div>
+    <div class="description-item">
+      <div class="item-title">IP address</div>
+      <div class="item-value">{{organisation.ipAddress}}</div>
+    </div>
+    <div class="description-item last">
+      <div class="item-title">Payment method</div>
+      <div class="item-value">{{organisation.paymentMethod}}</div>
+    </div>
+</mat-card>

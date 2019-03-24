@@ -9,13 +9,15 @@ import { OrganisationUpsertComponent } from './components/organisation-upsert/or
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material-module.module';
+import { OrganisationViewTileComponent } from './components/organisation-view-tile/organisation-view-tile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrganisationViewComponent,
     OrganisationUpsertComponent,
-    OrganisationCreationTileComponent
+    OrganisationCreationTileComponent,
+    OrganisationViewTileComponent
   ],
   imports: [
     BrowserModule,

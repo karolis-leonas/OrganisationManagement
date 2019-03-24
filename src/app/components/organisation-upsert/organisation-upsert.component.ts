@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrganizationHttpService } from '../../services/organization-http/organization-http.service';
 import { OrganizationType } from 'src/app/enums/organization-type.enum';
 import { Router } from '@angular/router';
+import { OrganisationAppConstants } from '../../constants/organisation-app-constants';
 
 @Component({
   selector: 'app-organisation-upsert',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./organisation-upsert.component.css']
 })
 export class OrganisationUpsertComponent implements OnInit {
+  readonly organisationAppConstants = OrganisationAppConstants;
   organisationCountries: OrganizationCountryModel[] = [];
   organisationCountryPhoneCodes: OrganizationCountryPhoneCodesModel[] = [];
   organisation: OrganizationModel;

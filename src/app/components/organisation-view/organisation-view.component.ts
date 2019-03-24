@@ -1,7 +1,6 @@
 import { OrganizationModel } from './../../models/organization.model';
 import { Component, OnInit } from '@angular/core';
 import { OrganizationInformationService } from '../../services/organization-information/organization-information.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organisation-view',
@@ -12,8 +11,7 @@ export class OrganisationViewComponent implements OnInit {
   organisations: OrganizationModel[] = [];
 
   constructor(
-    private _organizationInformationService : OrganizationInformationService,
-    private _router: Router
+    private _organizationInformationService: OrganizationInformationService,
   ) { }
 
   ngOnInit() {

@@ -63,7 +63,7 @@ export class OrganizationHttpService {
             const mappedPhoneCodeItem: OrganizationCountryPhoneCodesModel = {
               name: phoneCodeItem.name,
               dialCode: phoneCodeItem.dial_code,
-              code: phoneCodeItem.name
+              code: phoneCodeItem.code
             };
             mappedPhoneCodeItems.push(mappedPhoneCodeItem);
           });

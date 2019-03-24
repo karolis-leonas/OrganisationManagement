@@ -11,6 +11,9 @@
       <i>Business Organization</i>, however, enables using full Terminal functionality: combine your servers with IP resources using the Switch IP address management platform.
   </div>
 </div>
-<div class="organizations-info">
+<div class="organization-tiles">
+    <div *ngFor="let organisation of organisations">
+        <app-organisation-view-tile [organisation]="organisation"></app-organisation-view-tile>
+    </div>
   <app-organisation-creation-tile></app-organisation-creation-tile>
 </div>

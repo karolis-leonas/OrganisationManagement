@@ -3,7 +3,6 @@ import { OrganizationType } from '../enums/organization-type.enum';
 export class OrganizationModel {
   organizationType: OrganizationType;
   name: string;
-  countryCode: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -16,5 +15,6 @@ export class OrganizationModel {
   zipCode: string;
   phone: number;
   companyNumber: number;
+  paymentMethod: string;
   ipAddress: string;
 }

@@ -3,6 +3,12 @@
   padding: 20px 0;
 }
 
+.organization-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
 .title-text {
   font-size: 28px;
   color: #000022;

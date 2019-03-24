@@ -1,7 +1,8 @@
 .creation-tile-box {
   background-color: #FFFFFF;
   height: 250px;
-  width: 550px;
+  width: 490px;
+  margin: 10px;
 }
 
 .title-text {
