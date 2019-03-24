@@ -103,11 +103,25 @@
         </div>
     </div>
 
-    <button mat-button type="submit" [disabled]="!CompanyForm.form.valid" class="creation-button ibm-plex-mono">Create Organization</button>
+    <div>
+        <div class="payment-methods-title ibm-plex-mono">
+          <b>Select a payment method</b>
+        </div>
+        <div class="payment-methods-cards">
+            <mat-card class="payment-methods-card ibm-plex-mono"
+              *ngFor="let organisationPaymentMethod of organisationPaymentMethods"
+              (click)="onPaymentSelection(organisationPaymentMethod)"
+              [ngClass]="{'selected-payment-method': organisation.paymentMethod === organisationPaymentMethod.key}">{{organisationPaymentMethod.name}}
+            </mat-card>
+        </div>
+    </div>
+    <button mat-button type="submit" [disabled]="!CompanyForm.form.valid" class="creation-button ibm-plex-mono">
+      Create Organization
+    </button>
   </form>
   <div class="faq-column">
     <div class="ibm-plex-mono">
-      FAQ
+      <b>FAQ</b>
     </div>
     <br>
     <mat-accordion>

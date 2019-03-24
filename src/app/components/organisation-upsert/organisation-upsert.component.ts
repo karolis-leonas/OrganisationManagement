@@ -1,3 +1,4 @@
+import { OrganizationPaymentMethodModel } from './../../models/organization-payment-method.model';
 import { OrganizationInformationService } from '../../services/organization-information/organization-information.service';
 import { OrganizationModel } from './../../models/organization.model';
 import { OrganizationCountryPhoneCodesModel } from './../../models/organization-country-phone-code.model';
@@ -17,6 +18,7 @@ export class OrganisationUpsertComponent implements OnInit {
   readonly organisationAppConstants = OrganisationAppConstants;
   organisationCountries: OrganizationCountryModel[] = [];
   organisationCountryPhoneCodes: OrganizationCountryPhoneCodesModel[] = [];
+  organisationPaymentMethods: OrganizationPaymentMethodModel[] = [];
   organisation: OrganizationModel;
   organisationType = OrganizationType;
 
@@ -42,8 +44,8 @@ export class OrganisationUpsertComponent implements OnInit {
       }
     );
 
-    this._organizationHttpService.getPaymentData().subscribe(data => {
-      console.log(data);
+    this._organizationHttpService.getPaymentData().subscribe(paymentMethods => {
+      this.organisationPaymentMethods = paymentMethods;
     });
 
     this._organizationHttpService.getCurrentComputerIpData().subscribe((ipAddress: string) => {
@@ -63,5 +65,9 @@ export class OrganisationUpsertComponent implements OnInit {
         this._router.navigateByUrl('/organisations');
       }
     )
+  }
+
+  public onPaymentSelection(paymentMethod: OrganizationPaymentMethodModel): void {
+    this.organisation.paymentMethod = paymentMethod.key;
   }
 }

@@ -31,7 +31,7 @@ export class OrganizationInformationService {
       phone: 89745,
       companyNumber: 54651321,
       ipAddress: '192.167.7.1',
-      paymentMethod: 'Credit card'
+      paymentMethod: 'creditcard'
     }
     this._savedOrganizations.push(xxx);
     this._savedOrganizations.push(xxx);

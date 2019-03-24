@@ -5,6 +5,7 @@ import { OrganizationCountryModel } from './../../models/organization-country.mo
 import { OrganizationModel } from './../../models/organization.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { OrganizationHttpService } from '../../services/organization-http/organization-http.service';
+import { OrganizationPaymentMethodModel } from 'src/app/models/organization-payment-method.model';
 
 @Component({
   selector: 'app-organisation-view-tile',
@@ -15,11 +16,12 @@ export class OrganisationViewTileComponent implements OnInit {
   @Input() organisation: OrganizationModel;
   organisationCountry: string = '';
   organisationCountryCode: string = '';
+  organisationPaymentMethod: string = '';
   readonly organisationAppConstants = OrganisationAppConstants;
   organisationType = OrganizationType;
 
   constructor(
-    private _organizationHttpService : OrganizationHttpService,
+    private _organizationHttpService: OrganizationHttpService,
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,12 @@ export class OrganisationViewTileComponent implements OnInit {
       (organisationCountryPhoneCodes: OrganizationCountryPhoneCodesModel[]) => {
         this.organisationCountryCode =
           organisationCountryPhoneCodes.find(phoneCode => phoneCode.code === this.organisation.country).dialCode;
+      }
+    );
+
+    this._organizationHttpService.getPaymentData().subscribe(
+      (paymentMethods: OrganizationPaymentMethodModel[]) => {
+        this.organisationPaymentMethod = paymentMethods.find(paymentMethod => paymentMethod.key === this.organisation.paymentMethod).name;
       }
     );
   }

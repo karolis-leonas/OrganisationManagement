@@ -16,8 +16,5 @@ export class OrganisationViewComponent implements OnInit {
 
   ngOnInit() {
     this.organisations = this._organizationInformationService.getSavedOrganizations();
-
-    console.log(this.organisations);
   }
-
 }

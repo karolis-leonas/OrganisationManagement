@@ -1,3 +1,4 @@
+import { OrganizationPaymentMethodModel } from './../../models/organization-payment-method.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, } from 'rxjs';
@@ -13,8 +14,10 @@ import { OrganizationType } from '../../enums/organization-type.enum';
 export class OrganizationHttpService {
   private _organisationCountries: OrganizationCountryModel[] = [];
   private _organisationCountryPhoneCodes: OrganizationCountryPhoneCodesModel[] = [];
+  private _organisationPaymentMethods: OrganizationPaymentMethodModel[] = [];
   organizationCountriesObservable: Observable<OrganizationCountryModel[]>;
   organisationCountryPhoneCodesObservable: Observable<OrganizationCountryPhoneCodesModel[]>;
+  organisationPaymentMethodsObservable: Observable<OrganizationPaymentMethodModel[]>;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -77,27 +80,41 @@ export class OrganizationHttpService {
 
       return this.organisationCountryPhoneCodesObservable;
     }
-
-    return this._httpClient.get('../../assets/phoneCodesByCountry.json').pipe(
-      map((phoneCodeItems: any) => {
-        const mappedPhoneCodeItems: OrganizationCountryPhoneCodesModel[] = [];
-
-        phoneCodeItems.forEach(phoneCodeItem => {
-          const mappedPhoneCodeItem: OrganizationCountryPhoneCodesModel = {
-            name: phoneCodeItem.name,
-            dialCode: phoneCodeItem.dial_code,
-            code: phoneCodeItem.name
-          };
-          mappedPhoneCodeItems.push(mappedPhoneCodeItem);
-        });
-
-        return mappedPhoneCodeItems;
-      })
-    );
   }
 
-  public getPaymentData(): Observable<any> {
-    return this._httpClient.get('https://cors.io/?http://pastebin.com/raw.php?i=AmVZEjFq');
+  public getPaymentData(): Observable<OrganizationPaymentMethodModel[]> {
+    if (this._organisationCountryPhoneCodes && this._organisationPaymentMethods.length > 0) {
+      return of(this._organisationPaymentMethods);
+    } else if (this.organisationPaymentMethodsObservable) {
+      return this.organisationPaymentMethodsObservable;
+    } else {
+      this.organisationPaymentMethodsObservable = this._httpClient.get('https://cors.io/?http://pastebin.com/raw.php?i=AmVZEjFq').pipe(
+        map((paymentMethods: any) => {
+            const mappedPayments: OrganizationPaymentMethodModel[] = [];
+
+            for (const paymentMethod in paymentMethods) {
+              if (paymentMethods.hasOwnProperty(paymentMethod) && paymentMethods[paymentMethod] != null) {
+
+                const mappedPaymentMethod: OrganizationPaymentMethodModel = {
+                  key: paymentMethod,
+                  name: paymentMethods[paymentMethod].name,
+                  type: paymentMethods[paymentMethod].type,
+                  isDefault: paymentMethods[paymentMethod].isDefault
+                };
+
+                mappedPayments.push(mappedPaymentMethod);
+              }
+            }
+
+            this._organisationPaymentMethods = mappedPayments;
+
+            return this._organisationPaymentMethods;
+        }),
+        share()
+      );
+
+      return this.organisationPaymentMethodsObservable;
+    }
   }
 
   public getCurrentComputerIpData(): Observable<string> {
