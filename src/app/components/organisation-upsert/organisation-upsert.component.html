@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="display-flex">
-  <form (ngSubmit)="onOrganizationSubmit()" class="company-creation-column" #CompanyForm="ngForm">
+  <form (ngSubmit)="onOrganizationSubmit()" class="company-creation-column" #companyForm="ngForm">
     <mat-radio-group required name="organizationType" aria-label="Select an option" [(ngModel)]="organisation.organizationType">
         <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Business">Business</mat-radio-button>
         <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Personal">Personal</mat-radio-button>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div>
+    <div appOrganizationPaymentValidation>
         <div class="payment-methods-title ibm-plex-mono">
           <b>Select a payment method</b>
         </div>
@@ -115,10 +115,12 @@
             </mat-card>
         </div>
     </div>
-    <button mat-button type="submit" [disabled]="!CompanyForm.form.valid" class="creation-button ibm-plex-mono">
+
+    <button mat-button type="submit" [disabled]="!companyForm.form.valid || this.organisation.paymentMethod == null" class="creation-button ibm-plex-mono">
       Create Organization
     </button>
   </form>
+
   <div class="faq-column">
     <div class="ibm-plex-mono">
       <b>FAQ</b>

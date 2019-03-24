@@ -14,34 +14,36 @@ export class OrganizationInformationService {
     private _organizationHttpService : OrganizationHttpService
   ) { }
 
-  public afdfasdfs(): void {
-    const xxx: OrganizationModel = {
-      organizationType: 0,
-      name: 'Heficed',
-      country: 'LT',
-      firstName: 'John',
-      lastName: 'Smith',
-      email: 'john@heficed.com',
-      industry: 'Whatever',
-      VAT: 666,
-      stateRegion: 'Kaunas',
-      city: 'Kaunas',
-      address: 'Savanoriu pr. 109',
-      zipCode: 'LTX',
-      phone: 89745,
-      companyNumber: 54651321,
-      ipAddress: '192.167.7.1',
-      paymentMethod: 'creditcard'
-    }
-    this._savedOrganizations.push(xxx);
-    this._savedOrganizations.push(xxx);
-    this._savedOrganizations.push(xxx);
-  }
+  // THIS LOGIC IS FOR TESTING ONLY
+  // public addFakeTestOrganization(): void {
+  //   const testOrganization: OrganizationModel = {
+  //     organizationType: 0,
+  //     name: 'Heficed',
+  //     country: 'LT',
+  //     firstName: 'John',
+  //     lastName: 'Smith',
+  //     email: 'john@heficed.com',
+  //     industry: 'Whatever',
+  //     VAT: 666,
+  //     stateRegion: 'Kaunas',
+  //     city: 'Kaunas',
+  //     address: 'Savanoriu pr. 109',
+  //     zipCode: 'LTX',
+  //     phone: 89745,
+  //     companyNumber: 54651321,
+  //     ipAddress: '192.167.7.1',
+  //     paymentMethod: 'creditcard'
+  //   };
+  //   this._savedOrganizations.push(testOrganization);
+  //   this._savedOrganizations.push(testOrganization);
+  //   this._savedOrganizations.push(testOrganization);
+  // }
 
   public getSavedOrganizations(): OrganizationModel[] {
-    if (!this._savedOrganizations || this._savedOrganizations.length === 0) {
-      this.afdfasdfs();
-    }
+    // if (!this._savedOrganizations || this._savedOrganizations.length === 0) {
+    //   this.addFakeTestOrganization();
+    // }
+
     return this._savedOrganizations;
   }
 
