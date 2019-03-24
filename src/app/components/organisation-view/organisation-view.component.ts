@@ -1,4 +1,7 @@
+import { OrganizationModel } from './../../models/organization.model';
 import { Component, OnInit } from '@angular/core';
+import { OrganizationInformationService } from '../../services/organization-information/organization-information.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organisation-view',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organisation-view.component.css']
 })
 export class OrganisationViewComponent implements OnInit {
+  organisations: OrganizationModel[] = [];
 
-  constructor() { }
+  constructor(
+    private _organizationInformationService : OrganizationInformationService,
+    private _router: Router
+  ) { }
 
   ngOnInit() {
+    this.organisations = this._organizationInformationService.getSavedOrganizations();
+
+    console.log(this.organisations);
   }
 
 }
