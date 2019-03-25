@@ -1,0 +1,169 @@
+<div class="organizations-info">
+  <div class="title-text ibm-plex-mono">
+    Create a new Organization
+  </div>
+  <div class="description-text ibm-plex-mono">
+    Start a new Organization to easily manage your virtual machines, bare metal servers and IP resources. There are two types of Organizations you can choose from: Business and Personal.
+  </div>
+</div>
+<div class="display-flex">
+  <form (ngSubmit)="onOrganizationSubmit()" class="company-creation-column" #companyForm="ngForm">
+    <mat-radio-group required name="organizationType" aria-label="Select an option" [(ngModel)]="organisation.organizationType">
+        <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Business">Business</mat-radio-button>
+        <mat-radio-button class="ibm-plex-mono" [value]="organisationType.Personal">Personal</mat-radio-button>
+    </mat-radio-group>
+    <div class="form-inputs">
+        <input
+          name="name"
+          [(ngModel)]="organisation.name"
+          class="organization-input ibm-plex-mono invalid-dropdown"
+          type="text"
+          placeholder="Organization name *">
+        <select required
+          name="country"
+          class="organization-input dropdown-menu ibm-plex-mono"
+          [(ngModel)]="organisation.country"
+          (change)="onCountryChange($event.target.value)">
+            <option [ngValue]="undefined" hidden selected>Country *</option>
+            <option class="black-color" [value]="organisationCountry.key" *ngFor="let organisationCountry of organisationCountries" value={{summary}}>
+                {{organisationCountry.value}}
+            </option>
+        </select>
+        <input required
+          name="firstName"
+          [(ngModel)]="organisation.firstName"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="First name *">
+        <input required
+          name="stateRegion"
+          [(ngModel)]="organisation.stateRegion"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="State / region *">
+        <input required
+          name="lastName"
+          [(ngModel)]="organisation.lastName"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="Last name *">
+        <input required
+          name="city"
+          [(ngModel)]="organisation.city"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="City *">
+        <input required
+         name="email"
+         [(ngModel)]="organisation.email"
+         class="organization-input ibm-plex-mono"
+         type="text"
+         [pattern]="organisationAppConstants.EmailValidationRegex"
+         placeholder="Business Email *">
+        <input required
+          name="address"
+          [(ngModel)]="organisation.address"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="Address *">
+        <p class="organization-input phone-input ibm-plex-mono"
+          [ngClass]="{'grey-text': !selectedCountryCode || !selectedCountryCode.dialCode}">
+          {{selectedCountryCode.dialCode}}
+          <input [required]="organisation.organizationType == organisationType.Business"
+            *ngIf="organisation.organizationType == organisationType.Business"
+            name="phone"
+            [(ngModel)]="organisation.phone"
+            class="organization-input phone-input-editable ibm-plex-mono"
+            type="number"
+            placeholder="Business Phone *">
+        </p>
+        <input required
+          name="zipCode"
+          [(ngModel)]="organisation.zipCode"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="Zip code *">
+        <input
+          [required]="organisation.organizationType == organisationType.Business"
+          *ngIf="organisation.organizationType == organisationType.Business"
+          name="industry"
+          [(ngModel)]="organisation.industry"
+          class="organization-input ibm-plex-mono"
+          type="text"
+          placeholder="Your industry *">
+        <p class="organization-input phone-input ibm-plex-mono"
+          [ngClass]="{'grey-text': !selectedCountryCode || !selectedCountryCode.dialCode}">
+          {{selectedCountryCode.dialCode}}
+          <input [required]="organisation.organizationType == organisationType.Business"
+            *ngIf="organisation.organizationType == organisationType.Business"
+            name="companyNumber"
+            [(ngModel)]="organisation.companyNumber"
+            class="organization-input phone-input-editable ibm-plex-mono"
+            type="number"
+            placeholder="Company number *">
+        </p>
+        <input
+          *ngIf="organisation.organizationType == organisationType.Business"
+          name="vat"
+          [(ngModel)]="organisation.VAT"
+          class="organization-input ibm-plex-mono"
+          type="number"
+          placeholder="VAT">
+        <div
+          class="required-text ibm-plex-mono">
+          <sup>*</sup> Required fields
+        </div>
+    </div>
+
+    <div appOrganizationPaymentValidation>
+        <div class="payment-methods-title ibm-plex-mono">
+          <b>Select a payment method</b>
+        </div>
+        <div class="payment-methods-cards">
+            <mat-card class="payment-methods-card ibm-plex-mono"
+              *ngFor="let organisationPaymentMethod of organisationPaymentMethods"
+              (click)="onPaymentSelection(organisationPaymentMethod)"
+              [ngClass]="{'selected-payment-method': organisation.paymentMethod === organisationPaymentMethod.key}">{{organisationPaymentMethod.name}}
+            </mat-card>
+        </div>
+    </div>
+
+    <button mat-button type="submit" [disabled]="!companyForm.form.valid || this.organisation.paymentMethod == null" class="creation-button ibm-plex-mono">
+      Create Organization
+    </button>
+  </form>
+
+  <div class="faq-column">
+    <div class="ibm-plex-mono">
+      <b>FAQ</b>
+    </div>
+    <br>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="faq-text ibm-plex-mono">
+          <mat-panel-title>
+            What type of Organization should you choose?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="faq-description-text ibm-plex-mono">
+          <b>Business organization</b>
+          <br>Use full Terminal functionality and create a unique solution for your business. Combine virtual machines and bare metal servers with IP resources using the Switch IP management infrastructure.
+        </div>
+        <div class="faq-description-text ibm-plex-mono">
+          <br><b>Personal organization</b>
+          <br>Deploy virtual machines and bare metal servers in multiple locations worldwide. However, you will not be able to use Switch - automated IP management infrastructure.
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+          <mat-expansion-panel-header class="faq-text ibm-plex-mono">
+            <mat-panel-title>
+                What are the differences between automatic and manual payment?
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="faq-description-text ibm-plex-mono">
+            <b>Text for this was not provided</b>
+          </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

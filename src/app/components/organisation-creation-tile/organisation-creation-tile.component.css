@@ -1,0 +1,40 @@
+.creation-tile-box {
+  background-color: #FFFFFF;
+  height: 250px;
+  width: 490px;
+  margin: 10px;
+}
+
+.title-text {
+  font-size: 20px;
+  color: #000022;
+  text-align: center;
+  padding: 5px;
+}
+
+.description-text {
+  font-size: 14px;
+  color: #66667A;
+  text-align: center;
+  padding: 5px;
+}
+
+.card-items {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.creation-button {
+  border-color: #61B500;
+  font-size: 14px;
+  width: 125px;
+  color: #61B500;
+  border-width: 2px;
+  border-style: solid;
+  margin: 20px auto;
+  display:block;
+}

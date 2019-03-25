@@ -1,0 +1,19 @@
+<div class="organizations-info">
+  <div class="title-text ibm-plex-mono">
+    Organizations
+  </div>
+  <div class="description-text ibm-plex-mono">
+      Organization is the root node of a resource collection in Terminal.
+  </div>
+  <div class="description-text ibm-plex-mono">
+      By creating a <i>Personal Organization</i> you will be able to create a virtual machine or bare metal server.
+      <br>
+      <i>Business Organization</i>, however, enables using full Terminal functionality: combine your servers with IP resources using the Switch IP address management platform.
+  </div>
+</div>
+<div class="organization-tiles">
+    <div *ngFor="let organisation of organisations">
+        <app-organisation-view-tile [organisation]="organisation"></app-organisation-view-tile>
+    </div>
+  <app-organisation-creation-tile></app-organisation-creation-tile>
+</div>

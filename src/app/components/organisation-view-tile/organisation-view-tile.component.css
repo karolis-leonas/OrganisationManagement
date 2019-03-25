@@ -1,0 +1,35 @@
+.organization-box {
+  background-color: #FFFFFF;
+  height: auto;
+  width: 490px;
+  margin: 10px;
+}
+
+.title-text {
+  font-size: 18px;
+  color: #000022;
+  text-align: left;
+  padding: 10px 5px;
+}
+
+.description-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid #F2F2F4;
+}
+
+.description-item.last {
+  border-bottom: none;
+}
+
+.item-title {
+  font-size: 13px;
+  color: #9999A7;
+  padding: 5px;
+}
+
+.item-value {
+  font-size: 13px;
+  color: #33334E;
+  padding: 5px;
+}
