@@ -3,7 +3,7 @@
     Create a new Organization
   </div>
   <div class="description-text ibm-plex-mono">
-    Start a new Organization to easily manage your virtual machines, bare metal servers and IP resources. There are two types of Organizations you can choose from: Business and Personal..
+    Start a new Organization to easily manage your virtual machines, bare metal servers and IP resources. There are two types of Organizations you can choose from: Business and Personal.
   </div>
 </div>
 <div class="display-flex">
@@ -19,7 +19,11 @@
           class="organization-input ibm-plex-mono invalid-dropdown"
           type="text"
           placeholder="Organization name *">
-        <select required name="country" class="organization-input dropdown-menu ibm-plex-mono" [(ngModel)]="organisation.country">
+        <select required
+          name="country"
+          class="organization-input dropdown-menu ibm-plex-mono"
+          [(ngModel)]="organisation.country"
+          (change)="onCountryChange($event.target.value)">
             <option [ngValue]="undefined" hidden selected>Country *</option>
             <option class="black-color" [value]="organisationCountry.key" *ngFor="let organisationCountry of organisationCountries" value={{summary}}>
                 {{organisationCountry.value}}
@@ -62,12 +66,17 @@
           class="organization-input ibm-plex-mono"
           type="text"
           placeholder="Address *">
-        <input required
-          name="phone"
-          [(ngModel)]="organisation.phone"
-          class="organization-input ibm-plex-mono"
-          type="number"
-          placeholder="Business Phone *">
+        <p class="organization-input phone-input ibm-plex-mono"
+          [ngClass]="{'grey-text': !selectedCountryCode || !selectedCountryCode.dialCode}">
+          {{selectedCountryCode.dialCode}}
+          <input [required]="organisation.organizationType == organisationType.Business"
+            *ngIf="organisation.organizationType == organisationType.Business"
+            name="phone"
+            [(ngModel)]="organisation.phone"
+            class="organization-input phone-input-editable ibm-plex-mono"
+            type="number"
+            placeholder="Business Phone *">
+        </p>
         <input required
           name="zipCode"
           [(ngModel)]="organisation.zipCode"
@@ -82,14 +91,17 @@
           class="organization-input ibm-plex-mono"
           type="text"
           placeholder="Your industry *">
-        <input
-          [required]="organisation.organizationType == organisationType.Business"
-          *ngIf="organisation.organizationType == organisationType.Business"
-          name="companyNumber"
-          [(ngModel)]="organisation.companyNumber"
-          class="organization-input ibm-plex-mono"
-          type="text"
-          placeholder="Company number *">
+        <p class="organization-input phone-input ibm-plex-mono"
+          [ngClass]="{'grey-text': !selectedCountryCode || !selectedCountryCode.dialCode}">
+          {{selectedCountryCode.dialCode}}
+          <input [required]="organisation.organizationType == organisationType.Business"
+            *ngIf="organisation.organizationType == organisationType.Business"
+            name="companyNumber"
+            [(ngModel)]="organisation.companyNumber"
+            class="organization-input phone-input-editable ibm-plex-mono"
+            type="number"
+            placeholder="Company number *">
+        </p>
         <input
           *ngIf="organisation.organizationType == organisationType.Business"
           name="vat"

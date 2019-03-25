@@ -88,7 +88,7 @@ export class OrganizationHttpService {
     } else if (this.organisationPaymentMethodsObservable) {
       return this.organisationPaymentMethodsObservable;
     } else {
-      this.organisationPaymentMethodsObservable = this._httpClient.get('https://cors.io/?http://pastebin.com/raw.php?i=AmVZEjFq').pipe(
+      this.organisationPaymentMethodsObservable = this._httpClient.get('https://api.codetabs.com/v1/proxy?quest=https://pastebin.com/raw/AmVZEjFq').pipe(
         map((paymentMethods: any) => {
             const mappedPayments: OrganizationPaymentMethodModel[] = [];
 

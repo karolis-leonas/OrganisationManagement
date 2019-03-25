@@ -17,9 +17,10 @@ import { OrganisationAppConstants } from '../../constants/organisation-app-const
 export class OrganisationUpsertComponent implements OnInit {
   readonly organisationAppConstants = OrganisationAppConstants;
   organisationCountries: OrganizationCountryModel[] = [];
+  selectedCountryCode: OrganizationCountryPhoneCodesModel;
   organisationCountryPhoneCodes: OrganizationCountryPhoneCodesModel[] = [];
   organisationPaymentMethods: OrganizationPaymentMethodModel[] = [];
-  organisation: OrganizationModel;
+  organisation: OrganizationModel = null;
   organisationType = OrganizationType;
 
   constructor(
@@ -69,5 +70,9 @@ export class OrganisationUpsertComponent implements OnInit {
 
   public onPaymentSelection(paymentMethod: OrganizationPaymentMethodModel): void {
     this.organisation.paymentMethod = paymentMethod.key;
+  }
+
+  public onCountryChange(countryCode: string): void {
+    this.selectedCountryCode = this.organisationCountryPhoneCodes.find(organisationCountryPhoneCode => organisationCountryPhoneCode.code == countryCode);
   }
 }
